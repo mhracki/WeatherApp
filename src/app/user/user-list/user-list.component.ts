@@ -47,13 +47,9 @@ export class UserListComponent implements OnInit {
       this.listData = new MatTableDataSource(res);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
-
-
       this.listData.filterPredicate = (data, filter) => {
-
-        return (data.name.indexOf(filter) || data.surName.indexOf(filter)) !== -1;
-
-
+        const dataStr = data.name + data.surName + data.city + data.country + data.email;
+        return dataStr.toLowerCase().indexOf(filter) !== -1;
     };
        });
   }
@@ -110,9 +106,7 @@ export class UserListComponent implements OnInit {
   deleteUser(itemID) {
     if (confirm('Are you sure to delete this record?')) {
       this.service.deleteUser(itemID).subscribe(
-
-        err => console.log(err, 'error')
-      );
+        () => console.log('user deleted' ));
     }
     this.getUsers();
   }

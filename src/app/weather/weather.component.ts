@@ -24,7 +24,7 @@ export class WeatherComponent implements OnInit {
   weatherData: Weather[];
   chartTemperature: string[];
   chartHumidity: string[];
-  chartTime: string[];
+  chartTime: string[]=[];
   chartSchema: any;
   @ViewChild('chart', { static: true })
   chart: ElementRef<HTMLCanvasElement>;
