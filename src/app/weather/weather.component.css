@@ -1,0 +1,18 @@
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.image-container .weather-details {
+  position: absolute;
+  bottom: 0;
+  background: #212121;
+  width: 100%;
+}
+
+.image-container .weather-details p {
+  padding: 5px 15px;
+}

@@ -1,0 +1,125 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row
+    ><span class="toolbar-text">{{ title }}</span>
+    <span class="spacer"></span>
+    <button
+      class="exit-button"
+      mat-raised-button
+      color="warn"
+      (click)="onClose()"
+    >
+      <mat-icon>close</mat-icon>
+    </button></mat-toolbar-row
+  >
+</mat-toolbar>
+
+<form #form="ngForm" (submit)="onSubmit(ngForm)">
+  <div class="container">
+    <div class="inp-wrap">
+      <mat-form-field class="user-form-field ">
+        <input
+          type="text"
+          required
+          #name="ngModel"
+          name="name"
+          matInput
+          placeholder="First Name"
+          [(ngModel)]="service.formData.name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="inp-wrap">
+      <mat-form-field class="user-form-field ">
+        <input
+          type="text"
+          required
+          #surName="ngModel"
+          name="surName"
+          matInput
+          placeholder="Last Name"
+          [(ngModel)]="service.formData.surName"
+        />
+      </mat-form-field>
+    </div>
+    <div class="inp-wrap">
+      <mat-form-field class="user-form-field ">
+        <input
+          type="text"
+          required
+          #city="ngModel"
+          name="city"
+          matInput
+          placeholder="City"
+          [(ngModel)]="service.formData.city"
+        />
+      </mat-form-field>
+    </div>
+    <div class="inp-wrap">
+      <mat-form-field class="user-form-field ">
+        <input
+          type="text"
+          required
+          #country="ngModel"
+          name="Country"
+          matInput
+          placeholder="country"
+          [(ngModel)]="service.formData.country"
+        />
+      </mat-form-field>
+    </div>
+    <div class="inp-wrap">
+      <mat-form-field class="user-form-field ">
+        <input
+          type="email"
+          required
+          #email="ngModel"
+          name="Email"
+          matInput
+          placeholder="email"
+          [(ngModel)]="service.formData.email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+        />
+      </mat-form-field>
+    </div>
+          
+          <div class="inp-wrap" >
+      <mat-form-field class="user-form-field " [ngClass]="{'hide':newOrEdit===true}">
+        <input
+          type="text"
+          required
+          #password="ngModel"
+          name="password"
+          matInput
+          placeholder="password"
+          [(ngModel)]="service.formData.password"
+          [disabled]="newOrEdit"
+          
+        />
+      </mat-form-field>
+      
+    </div>
+
+    <div class="flex wd100">
+      <button class="mr5" mat-raised-button color="primary" type="submit" [disabled]="form.invalid"  (click)="createPassword()" [ngClass]="{'hide':newOrEdit===false}">
+        Submit new
+      </button>
+      <button class="mr5" mat-raised-button color="primary" type="submit" [disabled]="form.invalid" [ngClass]="{'hide':newOrEdit===true}">
+        Submit
+      </button>
+      <button class="mr5" mat-raised-button color="secondary" type="button" (click)="createPassword()" [ngClass]="{'hide':newOrEdit===true}">
+        New password
+      </button>
+      <span class="spacer"></span>
+      <button
+        class="mr5"
+        mat-raised-button
+        color="warn"
+        (click)="onClear()"
+        type="button"
+      >
+        Clear <mat-icon>delete_sweep</mat-icon>
+      </button>
+      
+    </div>
+  </div>
+</form>

@@ -1,0 +1,72 @@
+<div class="flex cr-al fx-w">
+<button class="menu-button" mat-raised-button color="primary" (click)="createUser()"><mat-icon>add_box</mat-icon> Add New User </button>
+<button class="menu-button" mat-raised-button color="secondary" (click)="filterShow()"><mat-icon>add_box</mat-icon> Show Filters </button>
+<div *ngIf="disFilter" class="button-wrapper flex cr-al fx-w" >
+    <mat-form-field  class="search-form-field" floatLabel="never">
+        <mat-icon matPrefix>search</mat-icon> <input type="search"  matInput [(ngModel)]="searchFilter" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchFilter" (click)="clearSearch()">
+            <mat-icon>close</mat-icon> 
+        </button>
+</mat-form-field>
+</div>
+</div>
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="listData" matSort>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="surname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.surName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="city">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.city}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Country</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.country}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="password">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Password</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.password}}</mat-cell>
+            </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="editUser(row)"><mat-icon>launch</mat-icon> </button>
+                <button mat-icon-button (click)="deleteUser(row.id)" color="warn"><mat-icon>delete_outline</mat-icon></button>
+                
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6"> 
+                
+                Loading data...
+            </mat-footer-cell>
+            
+        </ng-container>
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6" > 
+                
+                No data context...
+            </mat-footer-cell>
+            
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns : displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row> >
+    
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5,10,25,100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>

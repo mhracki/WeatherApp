@@ -1,0 +1,41 @@
+<form #form="ngForm" (submit)="onSubmit(form)" >
+        <div class="container w50 margin-center">
+           
+               <mat-form-field class="w100 ">
+                   <input  type="text" #UserName="ngModel" name="email" matInput placeholder="Email" [(ngModel)]="user.email">
+                   <button mat-button *ngIf="user.email" matSuffix mat-icon-button aria-label="Clear" (click)="user.email=''">
+                   <mat-icon>close</mat-icon>
+                   </button>
+              </mat-form-field>
+               
+             
+              
+               <mat-form-field class="w100">
+                 
+                 <input type="password" #Password="ngModel" name="password" matInput placeholder="Password" [(ngModel)]="user.password">
+                 <button mat-button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear" (click)="user.password=''">
+                   <mat-icon>close</mat-icon>
+                 </button>
+                 
+               </mat-form-field>
+               <mat-form-field class="w100">
+                 
+                  <input matInput placeholder="Credentials to log in as admin" disabled value="admin admin">
+                  
+                </mat-form-field>
+            
+             <div class="w100 flex ">
+                <button mat-raised-button color="primary" type="submit">Log in</button>
+                <span class="spacer"></span>
+                <button mat-raised-button color="primary" type="button" (click)="createUser()">Register</button>
+   
+   
+             </div>
+       
+        </div>
+          
+       
+       
+       </form>
+       <router-outlet></router-outlet>
+       

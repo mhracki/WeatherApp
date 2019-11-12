@@ -1,0 +1,150 @@
+
+<mat-card class="bigcard">
+  <mat-card-header>
+    <mat-card-actions class= "w100">
+      <div class="space-around flex w100">
+        
+          <mat-form-field >
+              <mat-label>Choose city</mat-label>
+              <mat-select [(value)]="selected">
+                <mat-option
+                  *ngFor="let item of cities"
+                  [value]="item"
+                  (click)="onCityChange(item.localization.lat, item.localization.lon)"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                #refStart
+                [matDatepicker]="pickerStart"
+                placeholder="Choose start date"
+                [(ngModel)]="startDate"
+                (dateChange)="onStartDate(refStart.value)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerStart"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerStart></mat-datepicker>
+            </mat-form-field>
+      
+            <mat-form-field>
+              <input
+                matInput
+                #refEnd
+                [matDatepicker]="pickerEnd"
+                placeholder="Choose end date"
+                [(ngModel)]="endDate"
+                (dateChange)="onEndDate(refEnd.value)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerEnd"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerEnd></mat-datepicker>
+            </mat-form-field>
+      </div>
+      
+    </mat-card-actions>
+  </mat-card-header>
+
+  <!-- <img
+    mat-card-image
+    src="http://media.heartlandtv.com/images/thunderstorm_flashes_night_weather_sky_forward_nature_storm-1438107.jpg!d3.jpeg"
+    alt="Photo of Weather"
+  /> -->
+  <mat-card-content>
+ 
+  </mat-card-content>
+</mat-card>
+
+<div class="flex card-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title> Weather for {{ selected.name }}</mat-card-title>
+      <mat-card-subtitle>{{ time | date: "short" }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="image-container">
+        <img class="margin-center" src="{{ selected.img }}" alt="" />
+        <div class="weather-details">
+          <p>Temperature: {{ temperature }} °C</p>
+          <p>Humidity {{ humidity }} %</p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="flex">
+        <button *ngIf="counter > 0" mat-stroked-button (click)="subs()">
+          previous hour
+        </button>
+        <span class="spacer"></span>
+        <button
+          *ngIf="counter < wserv.weatherList.length"
+          mat-stroked-button
+          (click)="add()"
+        >
+          next hour
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="card" *ngIf="user">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title color="primary"> User Details</mat-card-title>
+      <mat-card-subtitle>{{ user.name }}</mat-card-subtitle>
+ 
+    </mat-card-header>
+    <div class="hr-bot"></div>
+    <mat-card-content class="h80">
+        <div class="user-data-container ">
+          
+            <div class="user-data ">
+           <img src="../../assets/img/avatar.png"> 
+           </div>
+            <div class="hr-right"></div>
+           <div class="user-data ">
+             <p>First Name: {{ user.name | uppercase }} </p>
+             <p>Last Name: {{ user.surName | uppercase  }} </p>
+             <p>Email: {{ user.email | uppercase }}</p>
+             <p>City: {{ user.city  | uppercase }}</p>
+             <p>Country: {{ user.country  | uppercase }}</p>
+             <p>Password: {{ user.password  | uppercase }}</p>
+           </div>
+          </div>
+    </mat-card-content>
+
+  </mat-card>
+</div>
+
+<mat-card class="bigcard">
+  <mat-card-header>
+
+      <mat-card-title> Chart for {{ selected.name }}
+
+          from {{ startDate | date: "short" }} to 
+          <span [ngClass]="{'hide':!endDate}"> {{ endDate| date: "short" }} </span>
+          <span [ngClass]="{'hide':endDate}"> {{ chartTime[chartTime.length-1]   }} </span>
+      </mat-card-title>
+      <mat-card-subtitle> 
+
+        </mat-card-subtitle>
+    
+  </mat-card-header>
+
+  <!-- <img
+    mat-card-image
+    src="http://media.heartlandtv.com/images/thunderstorm_flashes_night_weather_sky_forward_nature_storm-1438107.jpg!d3.jpeg"
+    alt="Photo of Weather"
+  /> -->
+  <mat-card-content>
+    <canvas #chart width="200" height="100"></canvas>
+  </mat-card-content>
+</mat-card>

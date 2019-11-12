@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/pink-bluegrey.css";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color:white;
+  background-color: rgba(0,0,0,.87);
+}
+.container {
+  
+    margin-top: 5%;
+    padding: 5%;
+    background-color:#424242;
+    border-radius: 4px;
+  }
+  
+.margin-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+.flex{
+    display:flex;
+}
+.hide{
+    display:none !important;
+  }
+.fx-w{
+    flex-wrap:wrap;
+}
+.cr-al{
+    align-items: center;
+}
+.spacer{
+    flex: 1 1 auto;
+}
+.w100{
+   width:100%;
+}
+.w50{
+  width:50%;
+}
+.mr5{
+  margin:5px
+}
+.card-container{
+  flex-direction: column;
+  @media all and (min-width: 768px){
+    flex-direction: row;
+  }
+}
+.card{
+  margin:2%;
+  margin-bottom: unset;
+ 
+  @media all and (min-width: 768px){
+    width:50%;
+    &:last-child{
+      margin-top:2%;
+    }
+  }
+}
+.bigcard{
+ margin:2%;
+ margin-bottom: unset;
+}
+.space-around{
+  justify-content: space-around;
+}
+
+  

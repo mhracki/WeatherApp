@@ -1,0 +1,28 @@
+.mat-header-row {
+  background-color: rgba(183, 58, 89, 0.158);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(183, 58, 89);
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgba(183, 58, 89);
+}
+.mat-row:nth-child(odd) {
+  background-color: rgba(183, 58, 89, 0.055);
+}
+
+.search-form-field {
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 96%;
+}
+.menu-button {
+  margin-left: 2%;
+  width: 47%;
+  margin-bottom: 1.25em;
+  margin-top: 1.25em;
+}
+.button-wrapper{
+    width:100%;
+    padding:10px;
+  }
