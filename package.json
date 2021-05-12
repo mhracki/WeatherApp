@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~8.2.3",
     "@angular/platform-browser-dynamic": "~8.2.3",
     "@angular/router": "~8.2.3",
-    "chart.js": "^2.9.2",
+    "chart.js": "^2.9.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "ngx-xml2json": "^1.0.2",
